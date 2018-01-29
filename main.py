@@ -27,7 +27,9 @@ def deploy(ip, port, auth, config):
     print(r.status_code, r.reason)
 
 
-auth
+file = open('auth.key', 'r')
+auth = file.read()
+file.close()
 for service in services:
     deploy('192.168.2.1', '8080', auth, service)
 
