@@ -1,4 +1,4 @@
-from a_service import ThreadHandler as superClass
+from RaspBoard.a_service import ThreadHandler as superClass
 
 
 class Service(superClass):
@@ -27,7 +27,7 @@ class Service(superClass):
 
 
 config = {
-    "service_name": "builtin/service_registry_share",
+    "service_name": "cluster/service_registry_share",
     "handler": Service,
     "service_type": "thread",
     "service_category": "system",

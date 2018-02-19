@@ -1,4 +1,4 @@
-from a_service import RestHandler as superClass
+from RaspBoard.a_service import RestHandler as superClass
 
 
 encryption_key = None
@@ -69,7 +69,7 @@ class Service(superClass):
 
 
 config = {
-    "service_name": "builtin/service_configurator",
+    "service_name": "cluster/service_configurator",
     "handler": Service,
     "service_type": "rest",
     "service_category": "system",

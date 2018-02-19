@@ -1,5 +1,5 @@
-from a_service import ThreadHandler as superClass
-from common.event_module import Event as frameworkEvent
+from RaspBoard.a_service import ThreadHandler as superClass
+from RaspBoard.common.event_module import Event as frameworkEvent
 import pyaes
 import zmq
 
@@ -95,7 +95,7 @@ class Service(superClass):
             return default
 
 config = {
-    "service_name": "builtin/cluster_subscriber",
+    "service_name": "cluster/subscriber",
     "handler": Service,
     "service_type": "thread",
     "service_category": "system",

@@ -1,4 +1,4 @@
-from a_service import ThreadHandler as superClass
+from RaspBoard.a_service import ThreadHandler as superClass
 import socket
 import time
 import zmq
@@ -92,7 +92,7 @@ class Service(superClass):
         return last_echo
 
 config = {
-    "service_name": "builtin/service_discovery",
+    "service_name": "cluster/service_discovery",
     "handler": Service,
     "service_type": "thread",
     "service_category": "system",

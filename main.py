@@ -1,13 +1,13 @@
-# import requests
-# import json
-# import cPickle as pickle
+import requests
+import json
+import inspect
 
-from services.service_discovery import config as d
-from services.service_configurator import config as c
-from services.service_connector import config as con
-from services.cluster_publisher import config as pub
-from services.cluster_subscriber import config as sub
-from services.service_registry_share import config as share
+import rasp_cluster.services.service_discovery as d
+import rasp_cluster.services.service_configurator as c
+import rasp_cluster.services.service_connector as con
+import rasp_cluster.services.cluster_publisher as pub
+import rasp_cluster.services.cluster_subscriber as sub
+import rasp_cluster.services.service_registry_share as share
 
 services = [
     sub,
@@ -18,18 +18,19 @@ services = [
     d
 ]
 
-def deploy(ip, port, auth, config):
-    handler = config['handler']
-    config['handler'] = pickle.dumps(handler)
+def deploy(ip, port, auth, module):
+    config  = module.config
+    config.pop('handler', None)
+    config['module'] = "".join(inspect.getsourcelines(module)[0])
     msg = json.dumps(config)
     url = "http://%s:%s/builtin/service_starter" % (ip, port)
-    r = requests.post(url, data={'config': msg, 'authentication' auth})
-    print(r.status_code, r.reason)
+    r = requests.post(url, data={'config': msg, 'authentication': auth})
+    print(r.status_code, r.reason, r.text)
 
 
-file = open('auth.key', 'r')
+file = open('rasp_cluster/auth.key', 'r')
 auth = file.read()
 file.close()
 for service in services:
-    deploy('192.168.2.1', '8080', auth, service)
+    deploy('192.168.2.1', 8080, auth, service)
 

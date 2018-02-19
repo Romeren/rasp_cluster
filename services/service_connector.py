@@ -1,5 +1,5 @@
-from a_service import ThreadHandler as superClass
-from common.utilities import placeholder as Context
+from RaspBoard.a_service import ThreadHandler as superClass
+from RaspBoard.common.utilities import placeholder as Context
 from tornado.httpclient import HTTPClient
 from tornado.httpclient import HTTPError
 
@@ -50,12 +50,12 @@ class Service(superClass):
 
 
 config = {
-    "service_name": "builtin/service_connector",
+    "service_name": "cluster/service_connector",
     "handler": Service,
     "service_type": "thread",
     "service_category": "system",
     "dependencies": [
         {'name': 'config',
-         'service':  'rest/system/builtin/service_configurator'}
+         'service':  'rest/system/cluster/service_configurator'}
     ]
 }

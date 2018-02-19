@@ -1,4 +1,4 @@
-from a_service import ThreadHandler as superClass
+from RaspBoard.a_service import ThreadHandler as superClass
 import pyaes
 import time
 import zmq
@@ -49,7 +49,7 @@ class Service(superClass):
 
 
 config = {
-    "service_name": "builtin/cluster_publisher",
+    "service_name": "cluster/publisher",
     "handler": Service,
     "service_type": "thread",
     "service_category": "system",
